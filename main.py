@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import random
@@ -5,7 +7,7 @@ import random
 app = Flask(__name__)
 
 ##CREATE DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://quxjpjguclnzvl:f2fa891f810b2a2f0a3826fb191d05fc5028678cfcc849d97421bc4c5f625027@ec2-3-208-168-0.compute-1.amazonaws.com:5432/d1mvj8059i7rbg'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///cafes.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
