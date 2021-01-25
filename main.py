@@ -30,8 +30,7 @@ class Cafe(db.Model):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
 
-def create_tables():
-    db.create_all()
+db.create_all()
 
 
 @app.route("/")
