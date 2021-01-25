@@ -7,7 +7,7 @@ import random
 app = Flask(__name__)
 
 ##CREATE DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///cafes.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///cafes.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -28,6 +28,10 @@ class Cafe(db.Model):
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
+
+def create_tables():
+    db.create_all()
 
 
 @app.route("/")
